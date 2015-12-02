@@ -1,0 +1,63 @@
+# OS 
+.DS_Store
+
+# built application files
+*.apk
+*.ap_
+
+# files for the dex VM
+*.dex
+
+# Java class files
+*.class
+
+# generated files
+bin/
+gen/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Android Studio
+*.iml
+*.ipr
+*.iws
+.gradle/**
+gradle/**
+gradlew
+gradle.properties
+gradlew.bat
+settings.gradle
+build/**
+captures/**
+.idea/**
+import-summary.txt
+
+*.pydevproject
+.project
+.metadata
+.gradle
+build/**
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
+
+proguard-rules.pro
+
+# External tool builders
+.externalToolBuilders/
+
+
+# CDT-specific
+.cproject
+
+# PDT-specific
+.buildpath
