@@ -47,14 +47,17 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
         fullName.setTypeface(roboto);
         username.setTypeface(roboto);
 
-        if (photo.fullName.isEmpty()) {
+        if (photo.fullName != null && !photo.fullName.isEmpty()) {
             fullName.setText(photo.username);
         } else {
             fullName.setText(photo.fullName.trim());
         }
         username.setText(photo.username);
 
-        caption.setText(photo.caption.trim());
+        if (photo.caption != null && !photo.caption.isEmpty()) {
+            caption.setText(photo.caption.trim());
+        }
+        
         if (!photo.isImage) {
             caption.setText("[VIDEO] " + photo.caption.trim());
         }
