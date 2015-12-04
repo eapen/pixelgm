@@ -1,69 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:paddingTop="10dp" android:paddingBottom="10dp"
+    android:id="@+id/main"
+    android:background="#ffffff">
 
-    <ImageView
-        android:layout_width="wrap_content"
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/ivProfile"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:minHeight="30dp"
-        android:adjustViewBounds="true"
-        android:minWidth="30dp"
-        android:maxWidth="30dp"
-        android:maxHeight="30dp"
-        android:padding="2dp" />
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:id="@+id/topContainer">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Full Name"
-        android:id="@+id/tvName"
-        android:minHeight="10dp"
-        android:textSize="10sp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ivProfile"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:adjustViewBounds="true"
+            android:minHeight="100px"
+            android:minWidth="100px"
+            android:maxWidth="100px"
+            android:maxHeight="100px"
+            android:layout_centerVertical="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Full Name"
+            android:id="@+id/tvName"
+            android:minHeight="100px"
+            android:textSize="18sp"
+            android:paddingLeft="5dp"
+            android:textColor="#FF41567E"
+            android:layout_alignParentTop="true"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/ivProfile"
+            android:layout_toLeftOf="@+id/tvTimePosted"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Time posted"
+            android:id="@+id/tvTimePosted"
+            android:minHeight="100px"
+            android:paddingRight="2dp"
+            android:textColor="#FFCCCCCC"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/ivPhoto"
-        android:minHeight="40dp"
+        android:minHeight="200dp"
         android:adjustViewBounds="true"
-        android:layout_below="@+id/tvName"
+        android:layout_below="@+id/topContainer"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="username"
-        android:id="@+id/tvUsername"
         android:layout_below="@+id/ivPhoto"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:minHeight="9dp"
-        android:textStyle="bold|italic"
-        android:textSize="8sp"
-        android:textColor="#545353" />
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:id="@+id/rlBelowPic">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Caption"
-        android:id="@+id/tvCaption"
-        android:layout_below="@+id/tvUsername"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:maxLines="3"
-        android:minHeight="11dp"
-        android:textSize="10sp"
-        android:ellipsize="end"
-        android:paddingBottom="10dp"
-        android:textColor="#545353" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ivHeart"
+            android:minHeight="15dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/heart"
+            android:layout_alignBottom="@+id/tvLikes" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="likes"
+            android:id="@+id/tvLikes"
+            android:minHeight="15dp"
+            android:textSize="11sp"
+            android:textColor="#FF41567E"
+            android:paddingLeft="1dp"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/ivHeart" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="username"
+            android:id="@+id/tvUsername"
+            android:minHeight="15dp"
+            android:textStyle="bold"
+            android:textColor="#FF41567E"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/ivHeart"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="false" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Caption"
+            android:id="@+id/tvCaption"
+            android:maxLines="3"
+            android:minHeight="15dp"
+            android:ellipsize="end"
+            android:textColor="#41567e"
+            android:paddingLeft="2dp"
+            android:layout_alignTop="@+id/tvUsername"
+            android:layout_toRightOf="@+id/tvUsername" />
+
+    </RelativeLayout>
+
 </RelativeLayout>

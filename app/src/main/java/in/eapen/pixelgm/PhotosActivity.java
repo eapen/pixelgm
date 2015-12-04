@@ -1,5 +1,8 @@
 package in.eapen.pixelgm;
 
+import android.content.Context;
+import android.graphics.Typeface;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +15,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
@@ -26,6 +30,10 @@ public class PhotosActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photos);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setLogo(R.mipmap.ic_launcher);
+        actionBar.setDisplayUseLogoEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
         instagramPhotos = new ArrayList<>();
         instagramPhotosAdapter = new InstagramPhotosAdapter(this, instagramPhotos);
         ListView lv = (ListView) findViewById(R.id.lvPhotos);
@@ -39,14 +47,12 @@ public class PhotosActivity extends AppCompatActivity {
         // https://api.instagram.com/v1/media/popular?client_id=e05c462ebd86446ea48a5af73769b602
 
         String url = "https://api.instagram.com/v1/media/popular?client_id=" + CLIENT_ID;
+        // url = "https://api.instagram.com/v1/tags/kerala/media/recent?client_id=" + CLIENT_ID;
         client.get(url, null, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 // log the data
-                //Log.i("debug", response.toString());
-                /*
-                data.type == image || video
-                */
+                Log.i("debug", response.toString());
                 JSONArray photosJson = null;
                 try {
                     photosJson = response.getJSONArray("data");
@@ -61,14 +67,17 @@ public class PhotosActivity extends AppCompatActivity {
                         photo.fullName = photoObject.getJSONObject("user").getString("full_name");
                         photo.username = photoObject.getJSONObject("user").getString("username");
                         photo.userProfileImage = photoObject.getJSONObject("user").getString("profile_picture");
-                        photo.commentCount = photoObject.getJSONObject("comments").getLong("count");
+                        photo.commentCount = photoObject.getJSONObject("comments").getString("count");
                         photo.imageUrl = photoObject.getJSONObject("images").getJSONObject("standard_resolution").getString("url");
-                        photo.imageHeight = photoObject.getJSONObject("images").getJSONObject("standard_resolution").getLong("height");
-                        photo.imageWidth = photoObject.getJSONObject("images").getJSONObject("standard_resolution").getLong("width");
+                        photo.imageHeight = photoObject.getJSONObject("images").getJSONObject("standard_resolution").getInt("height");
+                        photo.imageWidth = photoObject.getJSONObject("images").getJSONObject("standard_resolution").getInt("width");
+                        photo.isImage = photoObject.getString("type").equalsIgnoreCase("image");
                         if (photoObject.optJSONObject("likes") != null) {
-                            photo.likeCount = photoObject.getJSONObject("likes").getLong("count");
+                            photo.likeCount = NumberFormat.getInstance().format(photoObject.getJSONObject("likes").getLong("count")) + " likes";
+                        } else {
+                            photo.likeCount = "Be the first to like";
                         }
-                        photo.relativeTimestamp = photoObject.getString("created_time");
+                        photo.relativeTimestamp = photoObject.getLong("created_time");
 
                         instagramPhotos.add(photo);
                     }

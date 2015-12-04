@@ -11,12 +11,13 @@ public class InstagramPhoto {
     String fullName;
     String username;
     String imageUrl;
-    long imageHeight;
-    long imageWidth;
+    int imageHeight;
+    int imageWidth;
     String userProfileImage;
-    String relativeTimestamp;
-    long likeCount;
-    long commentCount;
+    long relativeTimestamp;
+    String likeCount;
+    String commentCount;
+    boolean isImage;
 }
 
 /*

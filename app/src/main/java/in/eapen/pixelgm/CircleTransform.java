@@ -3,6 +3,7 @@ package in.eapen.pixelgm;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 
 /**
@@ -37,7 +38,14 @@ public class CircleTransform implements Transformation {
         float r = size / 2f;
         canvas.drawCircle(r, r, r, paint);
 
-        squaredBitmap.recycle();
+
+        Paint paint1 = new Paint();
+        paint1.setColor(Color.LTGRAY);
+        paint1.setStyle(Paint.Style.STROKE);
+        paint1.setAntiAlias(true);
+        paint1.setStrokeWidth(2);
+        canvas.drawCircle(r, r, r, paint1);
+
         return bitmap;
     }
 
