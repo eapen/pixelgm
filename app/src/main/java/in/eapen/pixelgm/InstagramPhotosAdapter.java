@@ -22,6 +22,19 @@ import java.util.List;
  */
 public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
     private Typeface roboto;
+
+    // our ViewHolder.
+    // caches our TextView
+    static class ViewHolderItem {
+        TextView fullName;
+        TextView username;
+        TextView caption;
+        TextView likeCount;
+        TextView timePosted;
+        ImageView profileImage;
+        ImageView image;
+    }
+
     // context data source
     public InstagramPhotosAdapter(Context context, List<InstagramPhoto> objects) {
         super(context, android.R.layout.simple_list_item_1, objects);
@@ -31,49 +44,59 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
+        ViewHolderItem viewHolder;
+
         InstagramPhoto photo = getItem(position);
 
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_photo, parent, false);
-        }
-        TextView fullName = (TextView) convertView.findViewById(R.id.tvName);
-        TextView username = (TextView) convertView.findViewById(R.id.tvUsername);
-        TextView caption = (TextView) convertView.findViewById(R.id.tvCaption);
-        TextView likeCount = (TextView) convertView.findViewById(R.id.tvLikes);
-        ImageView profileImage = (ImageView) convertView.findViewById(R.id.ivProfile);
-        ImageView image = (ImageView) convertView.findViewById(R.id.ivPhoto);
-        TextView timePosted = (TextView) convertView.findViewById(R.id.tvTimePosted);
+            // setup viewholder
+            viewHolder = new ViewHolderItem();
+            viewHolder.fullName = (TextView) convertView.findViewById(R.id.tvName);
+            viewHolder.username = (TextView) convertView.findViewById(R.id.tvUsername);
+            viewHolder.caption = (TextView) convertView.findViewById(R.id.tvCaption);
+            viewHolder.likeCount = (TextView) convertView.findViewById(R.id.tvLikes);
+            viewHolder.profileImage = (ImageView) convertView.findViewById(R.id.ivProfile);
+            viewHolder.image = (ImageView) convertView.findViewById(R.id.ivPhoto);
+            viewHolder.timePosted = (TextView) convertView.findViewById(R.id.tvTimePosted);
 
-        fullName.setTypeface(roboto);
-        username.setTypeface(roboto);
+            // set the holder with the view
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolderItem) convertView.getTag();
+        }
+
+        viewHolder.fullName.setTypeface(roboto);
+        viewHolder.username.setTypeface(roboto);
 
         if (photo.fullName != null && !photo.fullName.isEmpty()) {
-            fullName.setText(photo.username);
+            viewHolder.fullName.setText(photo.username);
         } else {
-            fullName.setText(photo.fullName.trim());
+            viewHolder.fullName.setText(photo.fullName.trim());
         }
-        username.setText(photo.username);
+        viewHolder.username.setText(photo.username);
 
         if (photo.caption != null && !photo.caption.isEmpty()) {
-            caption.setText(photo.caption.trim());
+            viewHolder.caption.setText(photo.caption.trim());
         }
-        
-        if (!photo.isImage) {
-            caption.setText("[VIDEO] " + photo.caption.trim());
-        }
-        likeCount.setText(photo.likeCount);
 
-        timePosted.setText(DateUtils.getRelativeTimeSpanString(photo.relativeTimestamp * 1000,
+        if (!photo.isImage) {
+            viewHolder.caption.setText("[VIDEO] " + photo.caption.trim());
+        }
+        viewHolder.likeCount.setText(photo.likeCount);
+
+        viewHolder.timePosted.setText(DateUtils.getRelativeTimeSpanString(photo.relativeTimestamp * 1000,
                 System.currentTimeMillis(),
                 0,
                 DateUtils.FORMAT_ABBREV_RELATIVE));
 
         // clear out images if recycled right away
-        profileImage.setImageResource(0);
-        image.setImageResource(0);
+        viewHolder.profileImage.setImageResource(0);
+        viewHolder.image.setImageResource(0);
 
-        Picasso.with(getContext()).load(photo.userProfileImage).transform(new CircleTransform()).resize(100, 100).centerCrop().into(profileImage);
-        Picasso.with(getContext()).load(photo.imageUrl).fit().centerInside().placeholder(R.mipmap.lab_beta_loading).into(image);
+        Picasso.with(getContext()).load(photo.userProfileImage).transform(new CircleTransform()).resize(100, 100).centerCrop().into(viewHolder.profileImage);
+        Picasso.with(getContext()).load(photo.imageUrl).fit().centerInside().placeholder(R.mipmap.image_placeholder).into(viewHolder.image);
 
         return convertView;
     }
