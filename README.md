@@ -4,7 +4,7 @@
 
 Submitted by: **Eapen**
 
-Time spent: **12** hours spent in total
+rime spent: **14** hours spent in total
 
 ## User Stories
 
@@ -18,7 +18,7 @@ The following **optional** features are implemented:
 * [x] Also, display relative timestamp, like count, user profile image
 * [x]  Display each user profile image using a RoundedImageView
 * [x]  Improve the user interface through styling and coloring
-* [x]  Display a nice default placeholder graphic for each image during loading (it was showing but has disappeared at the moment)
+* [x]  Display a nice default placeholder graphic for each image during loading
 * [ ] Add pull-to-refresh for popular stream with SwipeRefreshLayout
 * [ ]  Show latest comment for each photo (bonus: show last 2 comments)
 * [ ]  Allow user to view all comments for an image within a separate activity or dialog fragment
@@ -28,6 +28,7 @@ The following **additional** features are implemented:
 
 * [x] Use a custom font
 * [x] Rounded border outline on profile picture
+* [x] Utilizing ViewHolder pattern for performance optimization
 
 ## Video Walkthrough 
 
