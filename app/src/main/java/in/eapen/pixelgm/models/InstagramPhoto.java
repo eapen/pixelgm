@@ -1,4 +1,4 @@
-package in.eapen.pixelgm;
+package in.eapen.pixelgm.models;
 
 /**
  * Created by geapen on 12/1/15.
@@ -7,17 +7,17 @@ package in.eapen.pixelgm;
  *
  */
 public class InstagramPhoto {
-    String caption;
-    String fullName;
-    String username;
-    String imageUrl;
-    int imageHeight;
-    int imageWidth;
-    String userProfileImage;
-    long relativeTimestamp;
-    String likeCount;
-    String commentCount;
-    boolean isImage;
+    public String caption;
+    public String fullName;
+    public String username;
+    public String imageUrl;
+    public int imageHeight;
+    public int imageWidth;
+    public String userProfileImage;
+    public long relativeTimestamp;
+    public String likeCount;
+    public String commentCount;
+    public boolean isImage;
 }
 
 /*

@@ -1,4 +1,4 @@
-package in.eapen.pixelgm;
+package in.eapen.pixelgm.adapters;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -12,10 +12,11 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
-import java.text.NumberFormat;
 import java.util.List;
+
+import in.eapen.pixelgm.R;
+import in.eapen.pixelgm.models.InstagramPhoto;
+import in.eapen.pixelgm.utils.CircleTransform;
 
 /**
  * Created by geapen on 12/1/15.

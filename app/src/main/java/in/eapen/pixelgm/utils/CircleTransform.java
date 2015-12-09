@@ -1,4 +1,4 @@
-package in.eapen.pixelgm;
+package in.eapen.pixelgm.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;

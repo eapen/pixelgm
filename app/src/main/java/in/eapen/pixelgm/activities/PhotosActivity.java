@@ -1,7 +1,5 @@
-package in.eapen.pixelgm;
+package in.eapen.pixelgm.activities;
 
-import android.content.Context;
-import android.graphics.Typeface;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,6 +17,9 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
+import in.eapen.pixelgm.R;
+import in.eapen.pixelgm.adapters.InstagramPhotosAdapter;
+import in.eapen.pixelgm.models.InstagramPhoto;
 
 public class PhotosActivity extends AppCompatActivity {
 
